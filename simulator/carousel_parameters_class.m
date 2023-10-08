@@ -1,0 +1,56 @@
+classdef carousel_parameters_class
+    properties
+        cake_counter
+        names_components
+        stations_working
+        cp_gas_components
+        integration_interval
+        control_interval
+        V_slurry
+        filtration_sampling_interval
+        number_components
+        number_volatile_components    
+        T_room
+        visc_liq_coeff 
+        MW_components
+        cp
+        rho_liq_components
+        cp_liq_components
+        wl_crit
+        h_M
+        wl_eq
+        latent_heat
+        coeff_antoine
+        station_diameter
+        Rm
+        rho_sol
+        zeta
+        visc_gas_phase
+        surf_t
+        lambda
+        A
+        alpha
+        E
+        a_V
+        k_air
+        MW_air
+        cp_air
+        cp_s
+        min_length_discr
+        drying_sampling_interval
+        number_nodes
+        h_T
+    end 
+    methods 
+        function output=visc_liq_components(obj,T)  % Liquid viscosity [Pa s] - T in [K] Yaw
+            output=10.^(obj.visc_liq_coeff(:,1)+obj.visc_liq_coeff(:,2)/T+...
+                obj.visc_liq_coeff(:,3)*T+obj.visc_liq_coeff(:,4)*T^2)*1e-3;  
+        end            
+        function output=N_cap_CSD(obj,x,rho_liq,poros,dP,L_cake) % capillary number - Tarleton and Wakeman, 2007
+            output=(poros^3*(x).^2*(rho_liq*9.81.*L_cake+dP))/((1-poros)^2*L_cake.*obj.surf_t);
+        end
+        function output=pb_CSD(obj,x,poros) % threshold pressure - Tarleton and Wakeman, 2007
+            output=4.6*(1-poros)*obj.surf_t./(poros*x);
+        end
+    end
+end
