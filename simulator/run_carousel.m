@@ -1,5 +1,5 @@
 %% Script for running the carousel simulator
-% Francesco Destro, October2021
+
 
 clc, clear, %close all
 rng default
