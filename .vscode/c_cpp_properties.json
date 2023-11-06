@@ -3,7 +3,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**,"
+                "${workspaceFolder}/**",
+                "D:/MATLAB23/extern/include"
             ],
             "defines": [
                 "_DEBUG",
